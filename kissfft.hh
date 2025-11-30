@@ -11,6 +11,7 @@
 #include <complex>
 #include <utility>
 #include <vector>
+#include <iostream>
 
 
 template <typename scalar_t>
@@ -28,8 +29,10 @@ class kissfft
             // fill twiddle factors
             _twiddles.resize(_nfft);
             const scalar_t phinc =  (_inverse?2:-2)* std::acos( (scalar_t) -1)  / _nfft;
-            for (std::size_t i=0;i<_nfft;++i)
+            for (std::size_t i=0;i<_nfft;++i) {
                 _twiddles[i] = std::exp( cpx_t(0,i*phinc) );
+                std::cout << "Twiddle factor " << i << ": " << _twiddles[i] << std::endl;
+            }
 
             //factorize
             //start factoring out 4's, then 2's, then 3,5,7,9,...
@@ -192,7 +195,9 @@ class kissfft
 
         void kf_bfly2( cpx_t * Fout, const size_t fstride, const std::size_t m) const
         {
+            // std::cout << "kf_bfly2 called with fstride = " << fstride << " and m = " << m << std::endl;
             for (std::size_t k=0;k<m;++k) {
+                // std::cout << "kf_bfly2 called with k = " << k << ", twiddle:" << _twiddles[k*fstride] << std::endl;
                 const cpx_t t = Fout[m+k] * _twiddles[k*fstride];
                 Fout[m+k] = Fout[k] - t;
                 Fout[k] += t;
@@ -229,27 +234,34 @@ class kissfft
                 ++Fout;
             }while(--k);
         }
-
+        // 4点DFT的计算公式为：
+        // - X[0] = x[0] + x[1] + x[2] + x[3]
+        // - X[1] = x[0] + x[1]·W₄¹ + x[2]·W₄² + x[3]·W₄³
+        // - X[2] = x[0] + x[1]·W₄² + x[2]·W₄⁰ + x[3]·W₄²
+        // - X[3] = x[0] + x[1]·W₄³ + x[2]·W₄² + x[3]·W₄¹
+        
+        // 其中 W₄ = e^(-πi/2) = -i，具有特殊性质：W₄² = -1，W₄³ = i
         void kf_bfly4( cpx_t * const Fout, const std::size_t fstride, const std::size_t m) const
         {
+            std::cout << "kf_bfly4 called fstride: " << fstride << ", m: " << m << std::endl;
             cpx_t scratch[7];
             const scalar_t negative_if_inverse = _inverse ? -1 : +1;
             for (std::size_t k=0;k<m;++k) {
-                scratch[0] = Fout[k+  m] * _twiddles[k*fstride  ];
-                scratch[1] = Fout[k+2*m] * _twiddles[k*fstride*2];
-                scratch[2] = Fout[k+3*m] * _twiddles[k*fstride*3];
-                scratch[5] = Fout[k] - scratch[1];
+                scratch[0] = Fout[k+  m] * _twiddles[k*fstride  ]; // x[1]·W⁰
+                scratch[1] = Fout[k+2*m] * _twiddles[k*fstride*2]; // x[2]·W²
+                scratch[2] = Fout[k+3*m] * _twiddles[k*fstride*3]; // x[3]·W³
+                scratch[5] = Fout[k] - scratch[1]; // x[0] - x[2]·W²
 
-                Fout[k] += scratch[1];
-                scratch[3] = scratch[0] + scratch[2];
-                scratch[4] = scratch[0] - scratch[2];
+                Fout[k] += scratch[1];  // x[0] + x[2]·W²
+                scratch[3] = scratch[0] + scratch[2];  // (x[1]·W⁰ + x[3]·W³)
+                scratch[4] = scratch[0] - scratch[2];  // (x[1]·W⁰ - x[3]·W³)
                 scratch[4] = cpx_t( scratch[4].imag()*negative_if_inverse ,
                                       -scratch[4].real()*negative_if_inverse );
 
-                Fout[k+2*m]  = Fout[k] - scratch[3];
-                Fout[k    ]+= scratch[3];
-                Fout[k+  m] = scratch[5] + scratch[4];
-                Fout[k+3*m] = scratch[5] - scratch[4];
+                Fout[k+2*m]  = Fout[k] - scratch[3]; // X[2] = x[0] + x[2]·W² - (x[1]·W⁰ + x[3]·W³)
+                Fout[k    ]+= scratch[3];  // X[0] = x[0] + x[2]·W² + (x[1]·W⁰ + x[3]·W³)
+                Fout[k+  m] = scratch[5] + scratch[4];  // X[3] = (x[0] - x[2]·W²) + i·(x[1]·W⁰ - x[3]·W³)
+                Fout[k+3*m] = scratch[5] - scratch[4];  // X[1] = (x[0] - x[2]·W²) - i·(x[1]·W⁰ - x[3]·W³)
             }
         }
 
