@@ -28,7 +28,7 @@ void dotest(int nfft)
     typedef kissfft<T> FFT;
     typedef std::complex<T> cpx_type;
 
-    cout << "type:" << typeid(T).name() << " nfft:" << nfft;
+    cout << "type:" << typeid(T).name() << " nfft:" << nfft << endl;
 
     FFT fft(nfft,false);
 
@@ -60,15 +60,15 @@ void dotest(int nfft)
         complex<long double> dif = acc - x;
         difpower += norm(dif);
     }
-    cout << " RMSE:" << sqrt(difpower/totalpower) << "\t";
+    cout << " RMSE:" << sqrt(difpower/totalpower) << "\t" << endl;
 
-    double t0 = curtime();
-    int nits=20e6/nfft;
-    for (int k=0;k<nits;++k) {
-        fft.transform( &inbuf[0] , &outbuf[0] );
-    }
-    double t1 = curtime();
-    cout << " MSPS:" << ( (nits*nfft)*1e-6/ (t1-t0) ) << endl;
+    // double t0 = curtime();
+    // int nits=20e6/nfft;
+    // for (int k=0;k<nits;++k) {
+    //     fft.transform( &inbuf[0] , &outbuf[0] );
+    // }
+    // double t1 = curtime();
+    // cout << " MSPS:" << ( (nits*nfft)*1e-6/ (t1-t0) ) << endl;
 }
 
 int main(int argc,char ** argv)
@@ -76,7 +76,8 @@ int main(int argc,char ** argv)
     if (argc>1) {
         for (int k=1;k<argc;++k) {
             int nfft = atoi(argv[k]);
-            dotest<float>(nfft); dotest<double>(nfft); dotest<long double>(nfft);
+            // dotest<float>(nfft); dotest<double>(nfft); dotest<long double>(nfft);
+            dotest<double>(nfft);
         }
     }else{
         dotest<float>(32); dotest<double>(32); dotest<long double>(32);
