@@ -1,13 +1,13 @@
 # Makefile for Phase 2 Code Analysis
 
 # 包含 KISS FFT 源码
-KISSFFT_ROOT = ../..
+KISSFFT_ROOT = ../../..
 SRCDIR = $(KISSFFT_ROOT)
 VPATH = $(SRCDIR)
 
 # 编译设置
 CC = gcc
-CFLAGS = -Wall -Wextra -std=c99 -g -O2
+CFLAGS = -Wall -Wextra -std=c99 -g -O2 -DUSE_MATH_DEFINES
 INCLUDES = -I$(KISSFFT_ROOT)
 
 # 源文件
@@ -23,8 +23,8 @@ TARGET = code_analysis
 all: $(TARGET)
 
 # 编译代码分析工具
-$(TARGET): $(ANALYSIS_SOURCES) $(KISSFFT_SOURCES) $(KISSFFT_HEADERS)
-	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $(KISSFFT_SOURCES) $(ANALYSIS_SOURCES) -lm
+$(TARGET):
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $(addprefix $(SRCDIR)/,$(KISSFFT_SOURCES)) $(ANALYSIS_SOURCES) -lm
 
 # 运行分析
 run: $(TARGET)
@@ -44,30 +44,30 @@ profile: $(TARGET)
 # 测试不同编译选项
 test_optimizations:
 	@echo "=== Testing with -O0 ==="
-	$(CC) -O0 $(CFLAGS) $(INCLUDES) -o $(TARGET)_O0 $(KISSFFT_SOURCES) $(ANALYSIS_SOURCES) -lm
+	$(CC) -O0 $(CFLAGS) $(INCLUDES) -o $(TARGET)_O0 $(addprefix $(SRCDIR)/,$(KISSFFT_SOURCES)) $(ANALYSIS_SOURCES) -lm
 	time ./$(TARGET)_O0 > /dev/null
 
 	@echo "=== Testing with -O2 ==="
-	$(CC) -O2 $(CFLAGS) $(INCLUDES) -o $(TARGET)_O2 $(KISSFFT_SOURCES) $(ANALYSIS_SOURCES) -lm
+	$(CC) -O2 $(CFLAGS) $(INCLUDES) -o $(TARGET)_O2 $(addprefix $(SRCDIR)/,$(KISSFFT_SOURCES)) $(ANALYSIS_SOURCES) -lm
 	time ./$(TARGET)_O2 > /dev/null
 
 	@echo "=== Testing with -O3 -march=native ==="
-	$(CC) -O3 -march=native $(CFLAGS) $(INCLUDES) -o $(TARGET)_O3 $(KISSFFT_SOURCES) $(ANALYSIS_SOURCES) -lm
+	$(CC) -O3 -march=native $(CFLAGS) $(INCLUDES) -o $(TARGET)_O3 $(addprefix $(SRCDIR)/,$(KISSFFT_SOURCES)) $(ANALYSIS_SOURCES) -lm
 	time ./$(TARGET)_O3 > /dev/null
 
 # 测试定点数版本
 test_fixed:
 	@echo "=== Testing Fixed Point Version (16-bit) ==="
-	$(CC) -DFIXED_POINT=16 $(CFLAGS) $(INCLUDES) -o $(TARGET)_fixed16 $(KISSFFT_SOURCES) $(ANALYSIS_SOURCES) -lm
+	$(CC) -DFIXED_POINT=16 $(CFLAGS) $(INCLUDES) -o $(TARGET)_fixed16 $(addprefix $(SRCDIR)/,$(KISSFFT_SOURCES)) $(ANALYSIS_SOURCES) -lm
 	./$(TARGET)_fixed16
 
 	@echo "=== Testing Fixed Point Version (32-bit) ==="
-	$(CC) -DFIXED_POINT=32 $(CFLAGS) $(INCLUDES) -o $(TARGET)_fixed32 $(KISSFFT_SOURCES) $(ANALYSIS_SOURCES) -lm
+	$(CC) -DFIXED_POINT=32 $(CFLAGS) $(INCLUDES) -o $(TARGET)_fixed32 $(addprefix $(SRCDIR)/,$(KISSFFT_SOURCES)) $(ANALYSIS_SOURCES) -lm
 	./$(TARGET)_fixed32
 
 # 生成汇编代码
 assembly:
-	$(CC) -S $(CFLAGS) $(INCLUDES) -o kiss_fft.s $(KISSFFT_SOURCES)
+	$(CC) -S $(CFLAGS) $(INCLUDES) -o kiss_fft.s $(addprefix $(SRCDIR)/,$(KISSFFT_SOURCES))
 	@echo "Assembly code generated in kiss_fft.s"
 
 # 内存检查
@@ -115,5 +115,5 @@ clean:
 	rm -f benchmark_*.txt
 
 # 依赖关系
-kiss_fft.o: kiss_fft.c kiss_fft.h _kiss_fft_guts.h
-code_analysis.o: code_analysis.c kiss_fft.h _kiss_fft_guts.h
+$(SRCDIR)/kiss_fft.o: $(SRCDIR)/kiss_fft.c $(SRCDIR)/kiss_fft.h $(SRCDIR)/_kiss_fft_guts.h
+code_analysis.o: code_analysis.c $(SRCDIR)/kiss_fft.h $(SRCDIR)/_kiss_fft_guts.h

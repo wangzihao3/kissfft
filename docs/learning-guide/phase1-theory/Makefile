@@ -1,7 +1,8 @@
 # Makefile for Phase 1 Learning Materials
 
 CC = gcc
-CFLAGS = -Wall -Wextra -std=c99 -lm
+CFLAGS = -Wall -Wextra -std=c99
+LDFLAGS = -lm
 TARGETS = dft_demo
 
 .PHONY: all clean run
@@ -9,7 +10,7 @@ TARGETS = dft_demo
 all: $(TARGETS)
 
 dft_demo: dft_demo.c
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
 run: dft_demo
 	./dft_demo

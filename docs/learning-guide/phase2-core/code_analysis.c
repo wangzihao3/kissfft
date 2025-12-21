@@ -7,8 +7,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <time.h>
 #include "kiss_fft.h"
 #include "_kiss_fft_guts.h"
+
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
 // 全局变量用于追踪
 static int call_depth = 0;
@@ -69,12 +74,19 @@ void print_fft_config(kiss_fft_cfg cfg) {
 
     // 打印分解因子
     int *f = cfg->factors;
-    for (int i = 0; i < cfg->n_factors; i++) {
+    // 计算实际的因子数量
+    int n_factors = 0;
+    for (int i = 0; i < MAXFACTORS; i++) {
+        if (f[2*i] == 0) break;
+        n_factors++;
+    }
+
+    for (int i = 0; i < n_factors; i++) {
         printf("%d ", f[i]);
     }
     printf("\n");
 
-    printf("Number of factors: %d\n", cfg->n_factors);
+    printf("Number of factors: %d\n", n_factors);
     printf("=======================\n\n");
 }
 
@@ -227,14 +239,21 @@ void test_different_sizes() {
         int N = sizes[i];
         kiss_fft_cfg cfg = kiss_fft_alloc(N, 0, NULL, NULL);
 
+        // 计算因子数量
+        int n_factors = 0;
+        for (int j = 0; j < MAXFACTORS; j++) {
+            if (cfg->factors[2*j] == 0) break;
+            n_factors++;
+        }
+
         // 打印因子分解
         printf("%5d  ", N);
-        for (int j = 0; j < cfg->n_factors; j++) {
+        for (int j = 0; j < n_factors * 2; j++) {
             printf("%d ", cfg->factors[j]);
         }
-        while (cfg->n_factors < 6) {
-            printf("  ");
-            cfg->n_factors++;
+        while (n_factors < 3) {  // 调整格式对齐
+            printf("    ");
+            n_factors++;
         }
 
         // 快速性能测试

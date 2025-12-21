@@ -49,3 +49,5 @@ test/test_simd
 build
 .cache
 .serena
+.venv
+__pycache__
