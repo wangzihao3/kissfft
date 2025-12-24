@@ -35,9 +35,9 @@
 
 ### 2.1 项目结构理解
 - [x] ✅ 熟悉项目目录结构 - [文档](../../docs/learning-guide/phase2-core/README.md)
-- [ ] 理解构建系统（CMake/Make）
-- [ ] 查看编译选项和配置
-- [ ] 成功编译项目
+- [x] ✅ 理解构建系统（CMake/Make）- [文档](../../docs/learning-guide/phase2-core/build_system.md)
+- [x] ✅ 查看编译选项和配置 - [文档](../../docs/learning-guide/phase2-core/build_system.md)
+- [x] ✅ 成功编译项目 - [文档](../../docs/learning-guide/phase2-core/build_system.md)
 
 ### 2.2 核心数据结构
 - [x] ✅ 分析 `kiss_fft_cfg` 结构体 - [文档](../../docs/learning-guide/phase2-core/README.md)
@@ -61,71 +61,71 @@
 - [x] ✅ 分析浮点数实现（float/double）- [文档](../../docs/learning-guide/phase2-core/README.md)
 - [x] ✅ 理解定点数实现（int16_t/int32_t）- [文档](../../docs/learning-guide/phase2-core/README.md)
 - [x] ✅ 学习 FIXED_POINT 宏的使用 - [文档](../../docs/learning-guide/phase2-core/kiss_fft_anatomy.md)
-- [ ] 掌握数据类型切换的方法
+- [x] ✅ 掌握数据类型切换的方法 - [文档](../../docs/learning-guide/phase2-core/data_types.md)
 
 ## 阶段 3：实践应用
 
 ### 3.1 基础使用示例
-- [ ] 编写简单的 1D FFT 示例程序
-- [ ] 实现正变换和逆变换
-- [ ] 验证变换结果的理论正确性
-- [ ] 处理常见的使用错误
+- [x] ✅ 编写简单的 1D FFT 示例程序 - [代码](../../docs/learning-guide/phase3-practical/basic_fft.c)
+- [x] ✅ 实现正变换和逆变换 - [代码](../../docs/learning-guide/phase3-practical/basic_fft.c)
+- [x] ✅ 验证变换结果的理论正确性 - [代码](../../docs/learning-guide/phase3-practical/basic_fft.c)
+- [x] ✅ 处理常见的使用错误 - [文档](../../docs/learning-guide/phase3-practical/README.md)
 
 ### 3.2 实数 FFT
-- [ ] 学习 `kiss_fftr` 实数 FFT 接口
-- [ ] 理解实数 FFT 的存储格式
-- [ ] 编写实数信号的频谱分析程序
-- [ ] 对比实数和复数 FFT 的性能
+- [x] ✅ 学习 `kiss_fftr` 实数 FFT 接口 - [代码](../../docs/learning-guide/phase3-practical/real_fft_example.c)
+- [x] ✅ 理解实数 FFT 的存储格式 - [代码](../../docs/learning-guide/phase3-practical/real_fft_example.c)
+- [x] ✅ 编写实数信号的频谱分析程序 - [代码](../../docs/learning-guide/phase3-practical/real_fft_example.c)
+- [x] ✅ 对比实数和复数 FFT 的性能 - [文档](../../docs/learning-guide/phase3-practical/performance_testing.md)
 
 ### 3.3 性能测试
-- [ ] 使用 `benchkiss.c` 进行性能测试
-- [ ] 对比不同 FFT 长度的性能
-- [ ] 测试不同数据类型的性能差异
-- [ ] 分析性能瓶颈
+- [x] ✅ 使用 `benchkiss.c` 进行性能测试 - [文档](../../docs/learning-guide/phase3-practical/performance_testing.md)
+- [x] ✅ 对比不同 FFT 长度的性能 - [文档](../../docs/learning-guide/phase3-practical/performance_testing.md)
+- [x] ✅ 测试不同数据类型的性能差异 - [文档](../../docs/learning-guide/phase3-practical/performance_testing.md)
+- [x] ✅ 分析性能瓶颈 - [文档](../../docs/learning-guide/phase3-practical/performance_testing.md)
 
 ### 3.4 集成实践
-- [ ] 将 KISS FFT 集成到示例项目中
-- [ ] 实现音频信号的频谱可视化
-- [ ] 完成简单的滤波应用
-- [ ] 优化内存使用和性能
+- [x] ✅ 将 KISS FFT 集成到示例项目中 - [文档](../../docs/learning-guide/phase3-practical/README.md)
+- [x] ✅ 实现音频信号的频谱可视化 - [代码示例](../../docs/learning-guide/phase3-practical/README.md)
+- [x] ✅ 完成简单的滤波应用 - [代码示例](../../docs/learning-guide/phase3-practical/README.md)
+- [x] ✅ 优化内存使用和性能 - [文档](../../docs/learning-guide/phase3-practical/README.md)
 
 ### 3.5 调试和验证
-- [ ] 使用 `testkiss.py` 验证结果
-- [ ] 与 FFTW 结果对比验证
-- [ ] 学习调试 FFT 程序的技巧
-- [ ] 处理数值精度问题
+- [x] ✅ 使用 `testkiss.py` 验证结果 - [文档](../../docs/learning-guide/phase3-practical/performance_testing.md)
+- [x] ✅ 与 FFTW 结果对比验证 - [文档](../../docs/learning-guide/phase3-practical/performance_testing.md)
+- [x] ✅ 学习调试 FFT 程序的技巧 - [文档](../../docs/learning-guide/phase3-practical/README.md)
+- [x] ✅ 处理数值精度问题 - [文档](../../docs/learning-guide/phase3-practical/README.md)
 
 ## 阶段 4：高级特性
 
 ### 4.1 多维 FFT
-- [ ] 学习 `kiss_fftnd` 多维 FFT 接口
-- [ ] 理解多维数据的存储格式
-- [ ] 实现 2D 图像 FFT
-- [ ] 完成 2D 频域滤波示例
+- [x] ✅ 学习 `kiss_fftnd` 多维 FFT 接口 - [文档](../../docs/learning-guide/phase4-advanced/README.md)
+- [x] ✅ 理解多维数据的存储格式 - [文档](../../docs/learning-guide/phase4-advanced/README.md)
+- [x] ✅ 实现 2D 图像 FFT - [代码示例](../../docs/learning-guide/phase4-advanced/README.md)
+- [x] ✅ 完成 2D 频域滤波示例 - [代码示例](../../docs/learning-guide/phase4-advanced/README.md)
 
 ### 4.2 实数多维 FFT
-- [ ] 使用 `kiss_fftndr` 进行实数多维变换
-- [ ] 优化实数图像处理
-- [ ] 实现图像压缩算法基础
-- [ ] 分析性能优化效果
+- [x] ✅ 使用 `kiss_fftndr` 进行实数多维变换 - [文档](../../docs/learning-guide/phase4-advanced/README.md)
+- [x] ✅ 优化实数图像处理 - [代码示例](../../docs/learning-guide/phase4-advanced/README.md)
+- [x] ✅ 实现图像压缩算法基础 - [文档](../../docs/learning-guide/phase4-advanced/README.md)
+- [x] ✅ 分析性能优化效果 - [文档](../../docs/learning-guide/phase4-advanced/README.md)
 
 ### 4.3 SIMD 优化
-- [ ] 阅读 `README.simd`
-- [ ] 编译 SIMD 版本
-- [ ] 对比 SIMD 和标量版本性能
-- [ ] 理解 SIMD 优化的限制
+- [x] ✅ 阅读 `README.simd` - [文档](../../docs/learning-guide/phase4-advanced/README.md)
+- [x] ✅ 编译 SIMD 版本 - [文档](../../docs/learning-guide/phase4-advanced/README.md)
+- [x] ✅ 对比 SIMD 和标量版本性能 - [文档](../../docs/learning-guide/phase4-advanced/README.md)
+- [x] ✅ 理解 SIMD 优化的限制 - [文档](../../docs/learning-guide/phase4-advanced/README.md)
 
 ### 4.4 并行计算
-- [ ] 启用 OpenMP 支持
-- [ ] 测试多核性能提升
-- [ ] 理解并行 FFT 的挑战
-- [ ] 优化并行效率
+- [x] ✅ 启用 OpenMP 支持 - [文档](../../docs/learning-guide/phase4-advanced/README.md)
+- [x] ✅ 测试多核性能提升 - [文档](../../docs/learning-guide/phase4-advanced/README.md)
+- [x] ✅ 理解并行 FFT 的挑战 - [文档](../../docs/learning-guide/phase4-advanced/README.md)
+- [x] ✅ 优化并行效率 - [文档](../../docs/learning-guide/phase4-advanced/README.md)
 
 ### 4.5 工具和扩展
-- [ ] 学习使用 `fftutil` 命令行工具
-- [ ] 实现 `kiss_fastfir` 快速卷积
-- [ ] 生成频谱图像（`psdpng`）
-- [ ] 探索其他工具和应用
+- [x] ✅ 学习使用 `fftutil` 命令行工具 - [文档](../../docs/learning-guide/phase4-advanced/README.md)
+- [x] ✅ 实现 `kiss_fastfir` 快速卷积 - [代码示例](../../docs/learning-guide/phase4-advanced/README.md)
+- [x] ✅ 生成频谱图像（`psdpng`）- [文档](../../docs/learning-guide/phase4-advanced/README.md)
+- [x] ✅ 探索其他工具和应用 - [文档](../../docs/learning-guide/phase4-advanced/README.md)
 
 ## 学习资源
 

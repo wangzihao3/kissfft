@@ -2,14 +2,22 @@
 
 欢迎来到 KISS FFT 学习指南！本指南将帮助您从零开始掌握 FFT 算法和 KISS FFT 库的使用。
 
+## 🎯 学习完成状态
+
+**所有学习资源已完成！** ✅
+
+查看 [完成总结](./COMPLETION_SUMMARY.md) 了解完整的学习资源列表和快速开始指南。
+
 ## 学习路径概述
 
 本学习指南分为四个阶段，每个阶段都有明确的学习目标和实践任务：
 
-- [**阶段 1：FFT 理论基础**](./phase1-theory/) - 建立坚实的数字信号处理和 FFT 理论基础
-- [**阶段 2：核心代码探索**](./phase2-core/) - 深入理解 KISS FFT 的实现细节
-- [**阶段 3：实践应用**](./phase3-practical/) - 将理论转化为实际应用
-- [**阶段 4：高级主题**](./phase4-advanced/) - 探索优化和扩展技术
+| 阶段 | 主题 | 状态 | 说明 |
+|------|------|------|------|
+| [**阶段 1**](./phase1-theory/) | FFT 理论基础 | ✅ 完成 | 建立坚实的数字信号处理和 FFT 理论基础 |
+| [**阶段 2**](./phase2-core/) | 核心代码探索 | ✅ 完成 | 深入理解 KISS FFT 的实现细节 |
+| [**阶段 3**](./phase3-practical/) | 实践应用 | ✅ 完成 | 将理论转化为实际应用（含可编译示例） |
+| [**阶段 4**](./phase4-advanced/) | 高级主题 | ✅ 完成 | 探索优化和扩展技术 |
 
 ## 开始之前
 
@@ -74,8 +82,38 @@
 
 ## 开始学习
 
-准备好开始您的 FFT 学习之旅了吗？点击[阶段 1](./phase1-theory/)开始！
+### 快速开始（阶段 3 实践示例）
+
+如果您已经具备 FFT 理论基础，可以直接运行实践示例：
+
+```bash
+cd docs/learning-guide/phase3-practical
+make           # 编译所有示例
+make run       # 运行所有示例
+```
+
+### 完整学习路径
+
+准备好开始您的 FFT 学习之旅了吗？
+
+1. **初学者**：点击[阶段 1：理论基础](./phase1-theory/)开始！
+2. **有经验者**：从[阶段 2：核心代码](./phase2-core/)开始深入
+3. **实践者**：直接跳转到[阶段 3：实践应用](./phase3-practical/)
+4. **高级用户**：探索[阶段 4：高级主题](./phase4-advanced/)
+
+## 📚 新增资源
+
+本次更新新增了以下学习资源：
+
+- ✨ **构建系统指南** ([build_system.md](phase2-core/build_system.md)) - Makefile 和 CMake 使用详解
+- ✨ **数据类型切换指南** ([data_types.md](phase2-core/data_types.md)) - 浮点/定点数类型切换
+- ✨ **基础 FFT 示例** ([basic_fft.c](phase3-practical/basic_fft.c)) - 完整的可编译示例
+- ✨ **实数 FFT 示例** ([real_fft_example.c](phase3-practical/real_fft_example.c)) - 实数 FFT 使用演示
+- ✨ **性能测试指南** ([performance_testing.md](phase3-practical/performance_testing.md)) - 性能分析和优化
+- ✨ **便捷 Makefile** ([Makefile](phase3-practical/Makefile)) - 一键编译和运行示例
 
 ---
+
+**查看 [完成总结](./COMPLETION_SUMMARY.md) 了解完整的学习资源！**
 
 Happy Learning! 🎵📊
