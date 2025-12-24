@@ -14,53 +14,53 @@
 - [x] ✅ 完成基础信号处理练习 - [练习题](../../docs/learning-guide/phase1-theory/exercises.md)
 
 ### 1.2 傅里叶变换理论
-- [ ] 理解连续傅里叶变换（CFT）
-- [ ] 学习离散傅里叶变换（DFT）
-- [ ] 掌握 DFT 的数学表达式和性质
-- [ ] 完成 DFT 手工计算练习
+- [x] ✅ 理解连续傅里叶变换（CFT）- [文档](../../docs/learning-guide/phase1-theory/fourier_transform_theory.md)
+- [x] ✅ 学习离散傅里叶变换（DFT）- [文档](../../docs/learning-guide/phase1-theory/fourier_transform_theory.md)
+- [x] ✅ 掌握 DFT 的数学表达式和性质 - [文档](../../docs/learning-guide/phase1-theory/fourier_transform_theory.md)
+- [x] ✅ 完成 DFT 手工计算练习 - [练习](../../docs/learning-guide/phase1-theory/dft_calculations.md)
 
 ### 1.3 FFT 算法原理
-- [ ] 理解 Cooley-Tukey FFT 算法
-- [ ] 学习蝶形运算（butterfly operation）
-- [ ] 掌握时间抽取和频率抽取
-- [ ] 理解混合基数 FFT 的优势
+- [x] ✅ 理解 Cooley-Tukey FFT 算法 - [文档](../../docs/learning-guide/phase1-theory/fft_algorithm.md)
+- [x] ✅ 学习蝶形运算（butterfly operation）- [文档](../../docs/learning-guide/phase1-theory/fft_algorithm.md)
+- [x] ✅ 掌握时间抽取和频率抽取 - [文档](../../docs/learning-guide/phase1-theory/fft_algorithm.md)
+- [x] ✅ 理解混合基数 FFT 的优势 - [文档](../../docs/learning-guide/phase1-theory/fft_algorithm.md)
 
 ### 1.4 KISS FFT 设计哲学
-- [ ] 阅读 KISS FFT README
-- [ ] 理解"Keep It Simple, Stupid"原则
-- [ ] 对比 KISS FFT 与其他 FFT 库的设计取舍
-- [ ] 总结设计目标和应用场景
+- [x] ✅ 阅读 KISS FFT README - [文档](../../docs/learning-guide/phase1-theory/kiss_fft_philosophy.md)
+- [x] ✅ 理解"Keep It Simple, Stupid"原则 - [文档](../../docs/learning-guide/phase1-theory/kiss_fft_philosophy.md)
+- [x] ✅ 对比 KISS FFT 与其他 FFT 库的设计取舍 - [文档](../../docs/learning-guide/phase1-theory/kiss_fft_philosophy.md)
+- [x] ✅ 总结设计目标和应用场景 - [文档](../../docs/learning-guide/phase1-theory/kiss_fft_philosophy.md)
 
 ## 阶段 2：核心代码学习
 
 ### 2.1 项目结构理解
-- [ ] 熟悉项目目录结构
+- [x] ✅ 熟悉项目目录结构 - [文档](../../docs/learning-guide/phase2-core/README.md)
 - [ ] 理解构建系统（CMake/Make）
 - [ ] 查看编译选项和配置
 - [ ] 成功编译项目
 
 ### 2.2 核心数据结构
-- [ ] 分析 `kiss_fft_cfg` 结构体
-- [ ] 理解 `kiss_fft_cpx` 复数表示
-- [ ] 学习 twiddle factor 的生成和存储
-- [ ] 掌握子 FFT 规划（subfft）的概念
+- [x] ✅ 分析 `kiss_fft_cfg` 结构体 - [文档](../../docs/learning-guide/phase2-core/README.md)
+- [x] ✅ 理解 `kiss_fft_cpx` 复数表示 - [文档](../../docs/learning-guide/phase2-core/README.md)
+- [x] ✅ 学习 twiddle factor 的生成和存储 - [文档](../../docs/learning-guide/phase2-core/kiss_fft_anatomy.md)
+- [x] ✅ 掌握子 FFT 规划（subfft）的概念 - [文档](../../docs/learning-guide/phase2-core/kiss_fft_anatomy.md)
 
 ### 2.3 FFT 算法实现
-- [ ] 逐行分析 `kiss_fft.c` 核心函数
-- [ ] 理解 `kf_work` 工作函数的实现
-- [ ] 学习蝶形运算的实现细节
-- [ ] 掌握递归分解的策略
+- [x] ✅ 逐行分析 `kiss_fft.c` 核心函数 - [文档](../../docs/learning-guide/phase2-core/kiss_fft_anatomy.md)
+- [x] ✅ 理解 `kf_work` 工作函数的实现 - [文档](../../docs/learning-guide/phase2-core/kiss_fft_anatomy.md)
+- [x] ✅ 学习蝶形运算的实现细节 - [文档](../../docs/learning-guide/phase2-core/kiss_fft_anatomy.md)
+- [x] ✅ 掌握递归分解的策略 - [文档](../../docs/learning-guide/phase2-core/kiss_fft_anatomy.md)
 
 ### 2.4 内存管理
-- [ ] 理解 `kiss_fft_alloc` 的内存分配策略
-- [ ] 学习临时缓冲区的管理
-- [ ] 掌握 `kiss_fft_free` 的清理机制
-- [ ] 了解 alloca vs malloc 的选择
+- [x] ✅ 理解 `kiss_fft_alloc` 的内存分配策略 - [文档](../../docs/learning-guide/phase2-core/README.md)
+- [x] ✅ 学习临时缓冲区的管理 - [文档](../../docs/learning-guide/phase2-core/README.md)
+- [x] ✅ 掌握 `kiss_fft_free` 的清理机制 - [文档](../../docs/learning-guide/phase2-core/kiss_fft_anatomy.md)
+- [x] ✅ 了解 alloca vs malloc 的选择 - [文档](../../docs/learning-guide/phase2-core/README.md)
 
 ### 2.5 数据类型处理
-- [ ] 分析浮点数实现（float/double）
-- [ ] 理解定点数实现（int16_t/int32_t）
-- [ ] 学习 FIXED_POINT 宏的使用
+- [x] ✅ 分析浮点数实现（float/double）- [文档](../../docs/learning-guide/phase2-core/README.md)
+- [x] ✅ 理解定点数实现（int16_t/int32_t）- [文档](../../docs/learning-guide/phase2-core/README.md)
+- [x] ✅ 学习 FIXED_POINT 宏的使用 - [文档](../../docs/learning-guide/phase2-core/kiss_fft_anatomy.md)
 - [ ] 掌握数据类型切换的方法
 
 ## 阶段 3：实践应用
